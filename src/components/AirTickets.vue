@@ -8,22 +8,22 @@
             <div class="option-list">
               <div class="d-flex list-item">
                 <div class="checkbox">
-                  <input type="checkbox" id="checkbox1"/>
-                  <label for="checkbox1"></label>
+                  <input type="checkbox" id="checkbox-1" value="11" v-model="types"/>
+                  <label for="checkbox-1"></label>
                 </div>
                 <div>Только прямые</div>
               </div>
               <div class="d-flex list-item">
                 <div class="checkbox">
-                  <input type="checkbox" id="checkbox2"/>
-                  <label for="checkbox2"></label>
+                  <input type="checkbox" id="checkbox-2" value="12"  v-model="types"/>
+                  <label for="checkbox-2"></label>
                 </div>
                 <div>Только с багажом</div>
               </div>
               <div class="d-flex list-item">
                 <div class="checkbox">
-                  <input type="checkbox" id="checkbox3"/>
-                  <label for="checkbox3"></label>
+                  <input type="checkbox" id="checkbox-3" value="13"  v-model="types"/>
+                  <label for="checkbox-3"></label>
                 </div>
                 <div>Только возвратные</div>
               </div>
@@ -35,15 +35,15 @@
             <div class="aircompany-list">
               <div class="d-flex list-item">
                 <div class="checkbox">
-                  <input type="checkbox" id="checkbox"/>
+                  <input  type="checkbox" id="checkbox"/>
                   <label for="checkbox"></label>
                 </div>
                 <div>Все</div>
               </div>
-              <div class="d-flex list-item" v-for="airline of airlines" :key="airline.key">
+              <div class="d-flex list-item" v-for="(airline, index) of airlines" :key="airline.key">
                 <div class="checkbox">
-                  <input type="checkbox" :id="airline.id"/>
-                  <label :for="airline.id"></label>
+                  <input type="checkbox" :id="'checkbox' + index" :value="airline.key" v-model="filterAirlines"/>
+                  <label :for="'checkbox' + index" ></label>
                 </div>
                 <div>{{ airline.name }}</div>
               </div>
@@ -113,28 +113,33 @@ import {AirlineData} from '@/components/data/airlineData';
 
 @Component
 export default class AirTickets extends Vue {
-  public data = require('../results.json');
-  private flights = this.data.flights;
-  
+
   get airlines() {
-    let airlines = this.data.airlines;
-    let modifiedAirlines: AirlineData[] = [];
-    for (let key in airlines) {
-      if(airlines.hasOwnProperty(key)){
+    const airlines = this.data.airlines;
+    const modifiedAirlines: AirlineData[] = [];
+    for (const key in airlines) {
+      if (airlines.hasOwnProperty(key)) {
         const airline: AirlineData = {
-          key: key,
+          key,
           name: airlines[key],
-        }
+        };
         modifiedAirlines.push(airline);
       }
     }
     return modifiedAirlines;
   }
   
+  public data = require('../results.json');
+
+  public types: string[] = [];
+  public filterAirlines: string[] = [];
+  private flights = this.data.flights;
+
   public click() {
-    console.log(this.data);
+    console.log(this.types);
+    console.log(this.filterAirlines);
   }
-  
+
 }
 </script>
 
