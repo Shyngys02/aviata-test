@@ -1,0 +1,528 @@
+@font-face {
+    font-family: "Open Sans";
+    src: url(../fonts/opensans.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans';
+    font-style: normal;
+}
+
+body {
+    background-color: #D7D7D7;
+}
+
+
+main {
+    overflow: hidden;
+    background-repeat: repeat;
+}
+
+a,
+a:focus {
+    text-decoration: none;
+    outline: none;
+    -webkit-transition: 0.6s;
+    -moz-transition: 0.6s;
+    -ms-transition: 0.6s;
+    -o-transition: 0.6s;
+    transition: 0.6s;
+}
+
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+.event-none {
+    pointer-events: none;
+}
+
+.d-flex {
+    display: flex !important;
+}
+
+.flex-1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.flex-btm {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.flex-start {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.flex-start-2 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.flex-center-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-wrap {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap
+}
+
+.flex-wrap-2 {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-start
+}
+
+.flex-col {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    height: 100%
+}
+
+.flex-col-2 {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%
+}
+
+.inline-flex {
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.img-res {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.res {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+}
+
+.container {
+    width: 67%;
+    margin: 0 auto;
+}
+
+.px-15 {
+    padding:0 15px;
+}
+
+.rel {
+    position: relative;
+}
+
+.rel-2 {
+    position: relative;
+    display: inline-block
+}
+
+i {
+    -webkit-transition: 0.6s;
+    -moz-transition: 0.6s;
+    -ms-transition: 0.6s;
+    -o-transition: 0.6s;
+    transition: 0.6s;
+    cursor: pointer
+}
+
+
+
+.transform {
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.transform-x {
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.transform-y {
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.ib {
+    display: inline-block;
+}
+
+.hidden {
+    display: none
+}
+
+h2 {
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+h2 span {
+    color: #1fabe2;
+}
+
+.mob {
+    display: none!important;
+}
+
+.ma-6 {
+    margin: 6px;
+}
+
+.mt-2 {
+    margin-top: 2px;
+}
+
+.mt-4 {
+    margin-top: 25px;
+}
+.mb-4 {
+    margin-bottom: 4px;
+}
+
+.pa-6 {
+    padding: 6px;
+}
+
+
+.mx-10 {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.px-10 {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.justify-content-end {
+    justify-content: flex-end;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.align-items-end {
+    align-items: end;
+}
+
+.options,.aircompanies {
+    width: 240px;
+    background: #F5F5F5;
+    border-radius: 4px;
+    padding: 2px;
+    margin-bottom: 12px;
+}
+
+.aircompany-list {
+    height: 320px;
+    overflow: auto;
+    text-align:justify;
+}
+
+.aircompany-list ::-webkit-scrollbar {
+    width: 25px;
+    background: #000;
+}
+
+.aircompany-list ::-webkit-scrollbar-track {
+    width: 25px;
+    background: #000;
+}
+
+.drop-filter a{
+    cursor: pointer;
+    font-size: 13px;
+    color: #7284E4;
+    border-bottom: 1px dashed #7284E4;
+}
+
+.title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 12px 36px 12px 12px;
+}
+
+.list-item {
+    margin:12px 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    color: #202123;
+}
+
+.checkbox input{
+    display: none;
+}
+
+.checkbox {
+    width: 13px;
+    margin: 0 12px;
+    position: relative;
+}
+
+.checkbox label {
+    cursor: pointer;
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    top: 0;
+    border-radius: 2px;
+    background: #FFFFFF;
+    border: 1px solid #B9B9B9;
+    box-sizing: border-box;
+}
+
+.checkbox label:after {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 2px;
+    background: transparent;
+    top: 3px;
+    left: 2px;
+    border: 2px solid #333;
+    border-top: none;
+    border-right: none;
+
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.checkbox label:hover::after {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+    filter: alpha(opacity=30);
+    opacity: 0.4;
+}
+
+.checkbox input[type=checkbox]:checked + label {
+    background: #55BB06;
+    border: 1px solid #55BB06;
+}
+
+.checkbox input[type=checkbox]:checked + label::after {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 1;
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 2px;
+    background: transparent;
+    top: 3px;
+    left: 2px;
+    border: 2px solid #fff;
+    border-top: none;
+    border-right: none;
+
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.checkbox-text {
+    padding:0 6px;
+}
+
+.tickets {
+    padding-left: 20px;
+    width: 100%;
+}
+
+.ticket {
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+.logo img {
+    width: 20px;
+    height: 25px;
+}
+
+.distance-detail, .logo, .start-date, .end-date {
+    padding: 15px;
+}
+
+.logo-text {
+    font-weight: 600;
+    font-size: 17px;
+    font-size: 17px;
+    padding-left: 5px;
+}
+
+.datetime-details {
+    font-style: normal;
+    font-weight: normal;
+    color: #202123;
+}
+
+.price-block {
+    width: 25%;
+    background: #F5F5F5;
+    padding: 5px 0 10px 0;
+}
+
+.details-block {
+    padding: 25px 20px 15px 20px;
+    text-align: center;
+}
+
+.date {
+    font-size: 14px;
+}
+
+.detail-text {
+    font-weight: normal;
+    font-size: 14px;
+    text-align: center;
+    color: #FF9900;
+}
+
+.time {
+    font-weight: 600;
+    font-size: 27px;
+}
+
+.more-info {
+    padding: 5px;
+}
+
+.actions {
+    font-size: 13px;
+}
+
+.more-info a {
+    margin: 10px;
+    color: #7284E4;
+    border-bottom: 1px dashed #7284E4;
+}
+
+.no-return a{
+    color: #707276;
+}
+
+.select-ticket button{
+    width: 75%;
+    padding: 5px;
+    border: none;
+    background: #55BB06;
+    border-radius: 4px;
+    font-size: 21px;
+    text-align: center;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.price-text {
+    padding: 10px 0;
+    color: #707276;
+    font-size: 13px;
+}
+
+.no-baggage {
+    color: #202123;
+    padding: 6px;
+    font-size: 13px;
+}
+
+.add-baggage button {
+    border: none;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    text-align: center;
+    color: #5763B3;
+    background: #EAF0FA;
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.ticket-price {
+    margin: 10px;
+    font-family: Arial;
+    font-size: 26px;
+    text-align: center;
+    color: #202123;
+}
