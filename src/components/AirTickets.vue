@@ -35,7 +35,7 @@
             <div class="aircompany-list">
               <div class="list-item">
                 <label class="d-flex checkbox-block">
-                  <input  type="checkbox" id="checkbox"/>
+                  <input type="checkbox" id="checkbox" v-model="showAll" @change="selectAll"/>
                   <span></span>
                   Все
                 </label>
@@ -50,7 +50,7 @@
             </div>
           </div>
           <div class="drop-filter">
-            <a @click.prevent="click">Сбросить все фильтры</a>
+            <a @click.prevent="clearAllFilters">Сбросить все фильтры</a>
           </div>
         </div>
         <div class="tickets">
@@ -58,22 +58,22 @@
             <div class="details-block">
               <div class="flex-center">
                 <div class="logo flex-center-2">
-                  <img :src="'https://aviata.kz/static/airline-logos/80x80/'+ flight.itineraries[0][0].carrier + '.png'" alt="aircompany">
+                  <img :src="'https://aviata.kz/static/airline-logos/80x80/'+ flight.carrier + '.png'" alt="aircompany">
                   <div class="logo-text">
-                    {{ flight.itineraries[0][0].carrier_name}}
+                    {{ flight.carrierName}}
                   </div>
                 </div>
                 <div class="flex-center-2">
                   <div class="start-date">
-                    <div class="date">25 ноя, вс</div>
-                    <div class="time">23:25</div>
+                    <div class="date">{{ flight.depDate }} ноя, вс</div>
+                    <div class="time">{{ flight.depTime }}</div>
                   </div>
                   <div class="distance-detail">
                     <div class="detail-text">через Шымкент, 1ч 50м</div>
                   </div>
                   <div class="end-date">
-                    <div class="date">26 ноя, вс</div>
-                    <div class="time">23:25</div>
+                    <div class="date">{{ flight.arrDate }} ноя, вс</div>
+                    <div class="time">{{ flight.arrTime }}</div>
                   </div>
                 </div>
               </div>
@@ -104,6 +104,10 @@
         </div>
       </div>
     </div>
+    <!-- not correctly work  -->
+    <div class="overlay">
+      <div v-show="loader" class="loader"></div>
+    </div>
   </main>
 </template>
 
@@ -114,10 +118,31 @@ import {AirlineData} from '@/components/data/airlineData';
 @Component
 export default class AirTickets extends Vue {
   public data = require('../results.json');
-  
   public types: any[] = [];
-  public filterAirlines: any[] = [];
+  public filterAirlines: any = [];
   private flights = this.data.flights;
+  private showAll: boolean = true;
+  private loader: boolean = false;
+
+  public clearAllFilters() {
+    this.showAll = false;
+    this.types = [];
+    this.filterAirlines = [];
+  }
+
+  public selectAll() {
+    this.loader = true;
+    this.filterAirlines = [];
+    if (this.showAll) {
+      this.airlines.forEach((air: any) => {
+        this.filterAirlines.push(air.key);
+        this.loader = false;
+      });
+    } else {
+      this.showAll = !this.showAll;
+      this.loader = false;
+    }
+  }
 
   get airlines() {
     const airlines = this.data.airlines;
@@ -135,14 +160,43 @@ export default class AirTickets extends Vue {
   }
 
   get filteredFlights() {
-    let app = this;
-    let filteredFlights: any[] = this.flights.filter(function (el: any) {
-      app.filterAirlines.forEach((item: any) => {
-        console.log(item);
-        return el.itineraries[0][0].carrier == item;
-      })
+    this.loader = true;
+    const filteredFlights: any = [];
+    this.modifiedFlights.forEach((item: any) => {
+      this.modifiedFlights.forEach((filter: any, index: number) => {
+        if (this.modifiedFlights.hasOwnProperty(index)) {
+          if (item.carrier === this.filterAirlines[index]) {
+            filteredFlights.push(item);
+          }
+        }
+      });
     });
+    this.loader = false;
     return filteredFlights;
+  }
+
+  get modifiedFlights() {
+    const modifiedFlights: any = [];
+    this.flights.forEach((flight: any) => {
+      const flightData = {
+        id: flight.id,
+        price: flight.price,
+        carrierName: flight.itineraries[0][0].carrier_name,
+        carrier: flight.itineraries[0][0].carrier,
+        depDate: flight.itineraries[0][0].dep_date.substr(7, 2),
+        depTime: flight.itineraries[0][0].dep_date.substr(10, 5),
+        arrDate: flight.itineraries[0][0].arr_date.substr(7, 2),
+        arrTime: flight.itineraries[0][0].arr_date.substr(10, 5),
+      };
+      modifiedFlights.push(flightData);
+    });
+    return modifiedFlights;
+  }
+
+  public mounted() {
+    this.airlines.forEach((air) => {
+      this.filterAirlines.push(air.key);
+    });
   }
 
 }
