@@ -6,26 +6,26 @@
           <div class="options">
             <div class="title">Опции тарифа</div>
             <div class="option-list">
-              <div class="d-flex list-item">
-                <div class="checkbox">
+              <div class="list-item">
+                <label class="d-flex checkbox-block">
                   <input type="checkbox" id="checkbox-1" value="11" v-model="types"/>
-                  <label for="checkbox-1"></label>
-                </div>
-                <div>Только прямые</div>
+                  <span></span>
+                  Только прямые
+                </label>
               </div>
-              <div class="d-flex list-item">
-                <div class="checkbox">
+              <div class="list-item">
+                <label class="d-flex checkbox-block">
                   <input type="checkbox" id="checkbox-2" value="12"  v-model="types"/>
-                  <label for="checkbox-2"></label>
-                </div>
-                <div>Только с багажом</div>
+                  <span></span>
+                  Только с багажом
+                </label>
               </div>
-              <div class="d-flex list-item">
-                <div class="checkbox">
+              <div class="list-item">
+                <label class="d-flex checkbox-block">
                   <input type="checkbox" id="checkbox-3" value="13"  v-model="types"/>
-                  <label for="checkbox-3"></label>
-                </div>
-                <div>Только возвратные</div>
+                  <span></span>
+                  Только возвратные
+                </label>
               </div>
             </div>
           </div>
@@ -33,19 +33,19 @@
           <div class="aircompanies">
             <div class="title">Авиакомпании</div>
             <div class="aircompany-list">
-              <div class="d-flex list-item">
-                <div class="checkbox">
+              <div class="list-item">
+                <label class="d-flex checkbox-block">
                   <input  type="checkbox" id="checkbox"/>
-                  <label for="checkbox"></label>
-                </div>
-                <div>Все</div>
+                  <span></span>
+                  Все
+                </label>
               </div>
-              <div class="d-flex list-item" v-for="(airline, index) of airlines" :key="airline.key">
-                <div class="checkbox">
+              <div class="list-item" v-for="(airline, index) of airlines" :key="airline.key">
+                <label class="d-flex checkbox-block">
                   <input type="checkbox" :id="'checkbox' + index" :value="airline.key" v-model="filterAirlines"/>
-                  <label :for="'checkbox' + index" ></label>
-                </div>
-                <div>{{ airline.name }}</div>
+                  <span></span>
+                  {{ airline.name }}
+                </label>
               </div>
             </div>
           </div>
@@ -54,7 +54,7 @@
           </div>
         </div>
         <div class="tickets">
-          <div class="ticket flex-1" v-for="flight in flights" :key="flight.id">
+          <div class="ticket flex-1" v-for="flight in filteredFlights" :key="flight.id">
             <div class="details-block">
               <div class="flex-center">
                 <div class="logo flex-center-2">
@@ -113,6 +113,11 @@ import {AirlineData} from '@/components/data/airlineData';
 
 @Component
 export default class AirTickets extends Vue {
+  public data = require('../results.json');
+  
+  public types: any[] = [];
+  public filterAirlines: any[] = [];
+  private flights = this.data.flights;
 
   get airlines() {
     const airlines = this.data.airlines;
@@ -128,16 +133,16 @@ export default class AirTickets extends Vue {
     }
     return modifiedAirlines;
   }
-  
-  public data = require('../results.json');
 
-  public types: string[] = [];
-  public filterAirlines: string[] = [];
-  private flights = this.data.flights;
-
-  public click() {
-    console.log(this.types);
-    console.log(this.filterAirlines);
+  get filteredFlights() {
+    let app = this;
+    let filteredFlights: any[] = this.flights.filter(function (el: any) {
+      app.filterAirlines.forEach((item: any) => {
+        console.log(item);
+        return el.itineraries[0][0].carrier == item;
+      })
+    });
+    return filteredFlights;
   }
 
 }
